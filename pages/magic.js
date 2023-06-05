@@ -35,7 +35,7 @@ export default function Home() {
     return () => clearTimeout(timer); // this clears the timer if the component is unmounted within 5 seconds
   }, []);
 
-  if ((loading, !init))
+  if (loading || !init)
     return (
       <main className="max-w-md mx-auto border flex flex-col items-center justify-center h-[100vh]">
         <svg
@@ -71,7 +71,11 @@ export default function Home() {
           id="price"
           className="flex flex-col items-center gap-2 px-4  mb-4 pb-2 border-b border-gray-300"
         >
-          <p className="text-sm text-gray-600">
+          <p
+            className={`text-sm ${
+              errors.search ? "text-red-600" : "text-gray-600"
+            }`}
+          >
             Input a full name and a city to scrape the internet for details
             about them.
           </p>
@@ -86,6 +90,9 @@ export default function Home() {
               className={`block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0  focus:outline-none sm:text-lg`}
               {...register("search", {
                 required: `Please enter a search term`,
+                validate: {
+                  minLength: (v) => v.length > 3,
+                },
               })}
             />
           </div>
