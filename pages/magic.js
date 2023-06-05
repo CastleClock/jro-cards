@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
@@ -18,6 +19,7 @@ const search = {
 };
 export default function Home() {
   const router = useRouter();
+  const [init, setInit] = useState(false);
   const { magicSearch, loading } = UseCard();
   const {
     register,
@@ -25,7 +27,15 @@ export default function Home() {
     formState: { errors },
   } = useForm();
 
-  if (loading)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInit(true);
+    }, 2000);
+
+    return () => clearTimeout(timer); // this clears the timer if the component is unmounted within 5 seconds
+  }, []);
+
+  if ((loading, !init))
     return (
       <main className="max-w-md mx-auto border flex flex-col items-center justify-center h-[100vh]">
         <svg
@@ -52,10 +62,9 @@ export default function Home() {
             <ChevronLeftIcon className="ml-1  h-8 w-8 text-gray-800" />
           </button>
 
-          <p className="px-4 text-lg font-medium text-[#F6800A] ">
+          <p className="px-4 text-lg font-medium  col-span-2 text-[#F6800A] ">
             Magic Search
           </p>
-          <p />
         </div>
         <form
           onSubmit={handleSubmit(magicSearch)}
