@@ -5,7 +5,7 @@ import UseCard from "../../hooks/useCard";
 const cards = [
   {
     src: "/contacts.svg",
-    name: "Contact Card",
+    name: "Contact",
     link: "data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AN:Al Amawi;Ahmed;;;%0ATEL;TYPE=CELL:+16476872780%0AEMAIL:ahmed@jackrabbitops.com%0AEND:VCARD",
   },
   {
