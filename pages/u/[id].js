@@ -1,26 +1,26 @@
 const cards = [
   {
-    src: "/contacts.png",
+    src: "/contacts.svg",
     name: "Contact Card",
     link: "data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AN:Al Amawi;Ahmed;;;%0ATEL;TYPE=CELL:+6476872780%0AEMAIL:ahmed@jackrabbitops.com%0AEND:VCARD",
   },
   {
-    src: "/safari.png",
+    src: "/safari.svg",
     name: "Wesbite",
     link: "https://www.jackrabbitops.com/",
   },
   {
-    src: "/linkedin.png",
+    src: "/linkedin.svg",
     name: "LinkedIn",
     link: "https://www.linkedin.com/in/ahmed-al-amawi/",
   },
   {
-    src: "/mail.png",
+    src: "/mail.svg",
     name: "Email",
     link: "mailto:ahmed@jackrabbitops.com",
   },
   {
-    src: "/message.png",
+    src: "/message.svg",
     name: "Number",
     link: "sms:+6476872780",
   },
@@ -43,7 +43,7 @@ export default function Home() {
         <p className="text-lg">CTO at Jackrabbit Ops</p>
         <a
           href={cards[0].href}
-          className="bg-gray-900 w-2/3 px-8 py-4 rounded-full text-white hover:bg-gray-800 mt-2 text-2xl"
+          className="bg-gray-900 w-2/3 px-8 py-4 rounded-full text-center text-white hover:bg-gray-800 mt-2 text-2xl"
         >
           Save Contact
         </a>
@@ -55,7 +55,7 @@ export default function Home() {
             key={index}
             className="flex flex-col items-center"
           >
-            <img src={card.src} className="h-28 w-28" />
+            <img src={card.src} className="h-24 w-24" />
             <p className="text-sm text-gray-700 mt-1">{card.name}</p>
           </a>
         ))}
