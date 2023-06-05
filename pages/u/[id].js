@@ -6,7 +6,7 @@ const cards = [
   },
   {
     src: "/safari.svg",
-    name: "Wesbite",
+    name: "Website",
     link: "https://www.jackrabbitops.com/",
   },
   {
@@ -48,14 +48,14 @@ export default function Home() {
           Save Contact
         </a>
       </div>
-      <div className="grid grid-cols-3 gap-6 mt-10 px-6">
+      <div className="flex flex-row flex-wrap  justify-center gap-8 mt-10 px-6">
         {cards.map((card, index) => (
           <a
             href={card.link}
             key={index}
             className="flex flex-col items-center"
           >
-            <img src={card.src} className="h-24 w-24" />
+            <img src={card.src} className="h-24 w-24 " />
             <p className="text-sm text-gray-700 mt-1">{card.name}</p>
           </a>
         ))}
