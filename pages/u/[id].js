@@ -23,11 +23,11 @@ const cards = [
     name: "Email",
     link: "mailto:ahmed@jackrabbitops.com",
   },
-  {
-    src: "/message.svg",
-    name: "Number",
-    link: "sms:+6476872780",
-  },
+  // {
+  //   src: "/message.svg",
+  //   name: "Number",
+  //   link: "sms:+6476872780",
+  // },
 ];
 export default function Home() {
   const { magicSearch } = UseCard();
@@ -39,10 +39,10 @@ export default function Home() {
   return (
     <main className="max-w-md mx-auto border">
       <div className="w-full flex flex-col items-center">
-        <div className="h-40 w-full">
+        <div className="h-36 w-full">
           <img
             src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-            className="h-40 w-full object-cover opacity-80"
+            className="h-36 w-full object-cover opacity-80"
           />
         </div>
         <img
