@@ -42,7 +42,7 @@ export default function Home() {
         <h1 className="font-semibold -mt-14 text-2xl">Ahmed Al Amawi</h1>
         <p className="text-lg">CTO at Jackrabbit Ops</p>
         <a
-          href={cards[0].href}
+          href={cards[0].link}
           className="bg-gray-900 w-2/3 px-8 py-4 rounded-full text-center text-white hover:bg-gray-800 mt-2 text-2xl"
         >
           Save Contact
