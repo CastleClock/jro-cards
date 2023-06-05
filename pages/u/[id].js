@@ -47,9 +47,9 @@ export default function Home() {
         </div>
         <img
           src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-          className="h-40 w-40 rounded-full -translate-y-20"
+          className="h-40 w-40 rounded-full -translate-y-24"
         />
-        <h1 className="font-semibold -mt-14 text-2xl">Ahmed Al Amawi</h1>
+        <h1 className="font-semibold -mt-20 text-2xl">Ahmed Al Amawi</h1>
         <p className="text-lg">CTO at Jackrabbit Ops</p>
         <a
           href={cards[0].link}
@@ -65,7 +65,7 @@ export default function Home() {
             key={index}
             className="flex flex-col items-center"
           >
-            <img src={card.src} className="h-24 w-24 " />
+            <img src={card.src} className="h-16 w-16 " />
             <p className="text-sm text-gray-700 mt-1">{card.name}</p>
           </a>
         ))}
