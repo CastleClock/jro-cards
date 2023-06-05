@@ -1,3 +1,7 @@
+import { useForm } from "react-hook-form";
+
+//HOOKS
+import UseCard from "../../hooks/useCard";
 const cards = [
   {
     src: "/contacts.svg",
@@ -26,8 +30,14 @@ const cards = [
   },
 ];
 export default function Home() {
+  const { magicSearch } = UseCard();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   return (
-    <main className="max-w-md mx-auto">
+    <main className="max-w-md mx-auto border">
       <div className="w-full flex flex-col items-center">
         <div className="h-40 w-full">
           <img
@@ -60,6 +70,44 @@ export default function Home() {
           </a>
         ))}
       </div>
+      <p className="mt-4 border-t pt-2 px-4 text-lg font-medium text-[#F6800A] ">
+        Magic Search
+      </p>
+      <form
+        onSubmit={handleSubmit(magicSearch)}
+        id="price"
+        className="flex flex-col items-center gap-2 px-4  mb-6"
+      >
+        <p className="text-sm text-gray-600">
+          Input a full name and a city to scrape the internet for details about
+          them.
+        </p>
+        <div
+          className={`${
+            errors.search ? "border-red-600 " : "border-gray-300 "
+          }   rounded-md border p-2 bg-white shadow-sm focus-within:border-indigo-600  w-full  focus-within:ring-1 focus-within:ring-indigo-600 `}
+        >
+          <input
+            type="text"
+            placeholder="Ahmed Al Amawi, Victoria"
+            className={`block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0  focus:outline-none sm:text-lg`}
+            {...register("search", {
+              required: `Please enter a search term`,
+            })}
+          />
+        </div>
+        <div className="w-max">
+          <button
+            type="submit"
+            form="price"
+            className="text-lg bg-[#F6800A] hover:bg-white text-white  hover:text-[#F6800A]  text-center relative px-7 py-3.5 border border-[#F6800A]  hover:bg-softWhite rounded-lg leading-none flex justify-center items-center divide-x divide-gray-600"
+          >
+            <span className="pb-[0.09rem] transition duration-200 ">
+              Magic Search
+            </span>
+          </button>
+        </div>
+      </form>
     </main>
   );
 }
