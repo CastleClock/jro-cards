@@ -3,6 +3,8 @@ import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 
 const UseCard = () => {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
   // REQUESTS
   /************************************************************************* */
 
@@ -16,10 +18,15 @@ const UseCard = () => {
   /************************************************************************* */
 
   async function magicSearch(data) {
-    console.log(data);
+    setLoading(true);
+
+    router.push("/magic");
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setLoading(false);
   }
 
   return {
+    loading,
     magicSearch,
   };
 };

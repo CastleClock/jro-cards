@@ -6,7 +6,7 @@ const cards = [
   {
     src: "/contacts.svg",
     name: "Contact Card",
-    link: "data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AN:Al Amawi;Ahmed;;;%0ATEL;TYPE=CELL:+6476872780%0AEMAIL:ahmed@jackrabbitops.com%0AEND:VCARD",
+    link: "data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AN:Al Amawi;Ahmed;;;%0ATEL;TYPE=CELL:+16476872780%0AEMAIL:ahmed@jackrabbitops.com%0AEND:VCARD",
   },
   {
     src: "/safari.svg",
@@ -65,7 +65,7 @@ export default function Home() {
             key={index}
             className="flex flex-col items-center"
           >
-            <img src={card.src} className="h-16 w-16 " />
+            <img src={card.src} className="h-14 w-14 " />
             <p className="text-sm text-gray-700 mt-1">{card.name}</p>
           </a>
         ))}
