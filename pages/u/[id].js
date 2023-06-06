@@ -42,7 +42,7 @@ export default function Home() {
     formState: { errors },
   } = useForm();
   return (
-    <main className="max-w-md mx-auto border">
+    <main className="max-w-md mx-auto ">
       <NextSeo {...createSEOPageConfig(configSet.landing)} />
       <div className="flex flex-row  justify-between items-center px-4 mt-4">
         <p className="font-bold">Scale YYJ</p>
@@ -59,7 +59,7 @@ export default function Home() {
             src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
             className="rounded-l-xl "
           />
-          <div className="flex flex-col justify-center text-gray-50 px-4">
+          <div className="flex flex-col justify-center text-gray-50 p-4">
             <h1 className="font-semibold  text-3xl">Ahmed Al Amawi</h1>
             <p className="text-sm text-slate-400">Founder @</p>
             <p className="text-sm  text-slate-400 mt-0 ">Jackrabbit Ops </p>
