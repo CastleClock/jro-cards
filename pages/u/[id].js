@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
-
+import { NextSeo } from "next-seo";
+import { createSEOPageConfig } from "../..//utils/seo";
+import { configSet } from "../../lib/pageConfig";
 //HOOKS
 import UseCard from "../../hooks/useCard";
 const cards = [
@@ -38,6 +40,7 @@ export default function Home() {
   } = useForm();
   return (
     <main className="max-w-md mx-auto border">
+      <NextSeo {...createSEOPageConfig(configSet.landing)} />
       <div className="w-full flex flex-col items-center">
         <div className="h-36 w-full">
           <img

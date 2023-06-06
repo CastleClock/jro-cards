@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
+import { createSEOPageConfig } from "../utils/seo";
+import { configSet } from "../lib/pageConfig";
+
 //HOOKS
 import UseCard from "../hooks/useCard";
 const search = {
@@ -56,6 +60,7 @@ export default function Home() {
     );
   return (
     <main className="max-w-md mx-auto border">
+      <NextSeo {...createSEOPageConfig(configSet.magic)} />
       <div className="w-full flex flex-col items-center">
         <div className="mt-4 mb-2  w-full grid grid-cols-3 items-between">
           <button type="button" onClick={() => router.back()}>
