@@ -15,12 +15,26 @@ import Magic from "../../components/magic";
 export default function Home() {
   const router = useRouter();
   const { id } = router.query;
-  const { magicSearch, loadPersono, person, cards, loading, facts } = UseCard();
+  const { magicSearch, loadPersono, error, person, cards, loading, facts } =
+    UseCard();
 
   useEffect(() => {
     if (!person && id) loadPersono(id);
   }, [id]);
 
+  if (error) {
+    return (
+      <main className="max-w-md mx-auto border flex flex-col items-center justify-center h-[100vh] px-4 text-center">
+        <h1 className="text-3xl text-[#F6800A] font-bold">OOPS!</h1>
+        <p className="text-sm text-gray-500 mt-8">
+          It looks like you are trying to access a profile that does not exist.
+        </p>
+        <p className="text-sm text-gray-500">
+          Tap a card to view their profile.
+        </p>
+      </main>
+    );
+  }
   if (!person) {
     return (
       <main className="max-w-md mx-auto border flex flex-col items-center justify-center h-[100vh]">

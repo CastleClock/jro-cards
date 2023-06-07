@@ -11,6 +11,7 @@ const UseCard = () => {
   const [person, setPerson] = useState(null);
   const [cards, setCards] = useState([]);
   const [facts, setFacts] = useState(null);
+  const [error, setError] = useState(false);
 
   // REQUESTS
   /************************************************************************* */
@@ -38,7 +39,7 @@ const UseCard = () => {
         },
       ]);
     },
-    onError: (d) => alert(d),
+    onError: (d) => setError(true),
   });
 
   // FUNCTIONS
@@ -61,6 +62,7 @@ const UseCard = () => {
   }
 
   return {
+    error,
     loading,
     person,
     cards,
