@@ -6,11 +6,10 @@ import { useRouter } from "next/router";
 import { USER_LOOKUP } from "../lib/requests";
 
 const UseCard = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [person, setPerson] = useState(null);
   const [cards, setCards] = useState([]);
-  const [facts, setFacts] = useState(null);
   const [error, setError] = useState(false);
 
   // REQUESTS
@@ -53,20 +52,19 @@ const UseCard = () => {
     });
   }
 
-  async function magicSearch(data) {
-    setLoading(true);
+  // async function magicSearch(data) {
+  //   setLoading(true);
 
-    // router.push("/magic");
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setLoading(false);
-  }
+  //   // router.push("/magic");
+  //   await new Promise((resolve) => setTimeout(resolve, 2000));
+  //   setLoading(false);
+  // }
 
   return {
     error,
     loading,
     person,
     cards,
-    facts,
     loadPersono,
     magicSearch,
   };
