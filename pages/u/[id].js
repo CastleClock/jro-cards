@@ -61,7 +61,7 @@ export default function Home() {
       <div className="flex flex-row  justify-between items-center px-4 mt-4">
         <p className="font-bold">Scale YYJ</p>
         <Link
-          href="https://www.jackrabbitops.com/"
+          href="https://scale.jackrabbitops.com/events"
           className="border border-black text-black h-min px-6 py-2 rounded-lg text-sm hover:bg-black hover:text-gray-50"
         >
           <p className="text-sm">See Events</p>
@@ -144,6 +144,16 @@ export default function Home() {
       ) : (
         <Magic />
       )}
+      <div className="flex items-center justify-center">
+        <p className="text-sm  text-gray-700">
+          {person.firstName} {person.lastName}?
+        </p>
+        <Link href={person.signedUp ? "/login" : "/register"}>
+          <p className="text-sm text-blue-700 ml-1">
+            {person.signedUp ? "Login" : "Register"} to edit
+          </p>
+        </Link>
+      </div>
     </main>
   );
 }
