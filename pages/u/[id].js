@@ -111,7 +111,7 @@ export default function Home() {
             Break the Ice with <span className="text-[#F6800A]">AI</span>
           </p>
           <p className="text-sm  text-gray-700">
-            We&apos;ll look up {person.firstName} {person.lastName} for you.
+            Talk to {person.firstName} {person.lastName}'s' AI Assistant.
           </p>
           <div className="w-full flex flex-col items-center justify-center my-3 mt-3">
             <button
@@ -121,7 +121,7 @@ export default function Home() {
               className=" w-full flex flex-row justify-center items-center gap-2 text-base bg-black hover:bg-white text-white  hover:text-black px-7 py-2 border border-black  hover:bg-softWhite rounded-lg "
             >
               <RocketLaunchIcon className="h-6 w-6" />
-              Launch AI Helper
+              Launch AI Assistant
               {loading && (
                 <svg
                   className="animate-spin h-7 w-7  ml-2 self-center "
