@@ -115,7 +115,7 @@ export default function Home() {
         <div className="w-full flex flex-col items-center justify-center my-3 mt-3">
           <button
             type="submit"
-            onClick={() => magicSearch()}
+            onClick={() => console.log("coming soon")}
             form="price"
             className=" w-full flex flex-row justify-center items-center gap-2 text-base bg-black hover:bg-white text-white  hover:text-black px-7 py-2 border border-black  hover:bg-softWhite rounded-lg "
           >
