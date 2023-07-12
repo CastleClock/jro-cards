@@ -52,13 +52,13 @@ const UseCard = () => {
     });
   }
 
-  async function magicSearch(data) {
-    setLoading(true);
+  // async function magicSearch(data) {
+  //   setLoading(true);
 
-    // router.push("/magic");
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setLoading(false);
-  }
+  //   // router.push("/magic");
+  //   await new Promise((resolve) => setTimeout(resolve, 2000));
+  //   setLoading(false);
+  // }
 
   return {
     error,
