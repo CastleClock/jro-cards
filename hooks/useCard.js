@@ -66,7 +66,6 @@ const UseCard = () => {
     person,
     cards,
     loadPersono,
-    magicSearch,
   };
 };
 export default UseCard;
