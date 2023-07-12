@@ -15,7 +15,7 @@ import Magic from "../../components/magic";
 export default function Home() {
   const router = useRouter();
   const { id } = router.query;
-  const { magicSearch, loadPersono, error, person, cards, loading } = UseCard();
+  const { loadPersono, error, person, cards, loading } = UseCard();
 
   useEffect(() => {
     if (!person && id) loadPersono(id);
