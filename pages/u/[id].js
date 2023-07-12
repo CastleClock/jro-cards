@@ -15,8 +15,7 @@ import Magic from "../../components/magic";
 export default function Home() {
   const router = useRouter();
   const { id } = router.query;
-  const { magicSearch, loadPersono, error, person, cards, loading, facts } =
-    UseCard();
+  const { magicSearch, loadPersono, error, person, cards, loading } = UseCard();
 
   useEffect(() => {
     if (!person && id) loadPersono(id);
@@ -72,6 +71,7 @@ export default function Home() {
           <img
             src={person.linkedinProfilePicUrl}
             className="rounded-l-xl object-cover h-full w-full"
+            alt="profile"
           />
           <div className="flex flex-col justify-center text-gray-50 p-4 ">
             <h1 className="font-semibold  text-3xl">
@@ -100,59 +100,61 @@ export default function Home() {
             key={index}
             className="flex flex-col items-center"
           >
-            <img src={card.src} className="h-14 w-14 " />
+            <img src={card.src} className="h-14 w-14 " alt="user image" />
             <p className="text-sm text-gray-700 mt-1">{card.name}</p>
           </a>
         ))}
       </div>
-      {!facts ? (
-        <div className="border rounded-lg m-4 my-6 p-2">
-          <p className=" mt-1 text-xl font-semibold text-black  tracking-tighter">
-            Break the Ice with <span className="text-[#F6800A]">AI</span>
-          </p>
-          <p className="text-sm  text-gray-700">
-            Talk to {person.firstName} {person.lastName}'s' AI Assistant.
-          </p>
-          <div className="w-full flex flex-col items-center justify-center my-3 mt-3">
-            <button
-              type="submit"
-              onClick={() => magicSearch()}
-              form="price"
-              className=" w-full flex flex-row justify-center items-center gap-2 text-base bg-black hover:bg-white text-white  hover:text-black px-7 py-2 border border-black  hover:bg-softWhite rounded-lg "
-            >
-              <RocketLaunchIcon className="h-6 w-6" />
-              Launch AI Assistant
-              {loading && (
-                <svg
-                  className="animate-spin h-7 w-7  ml-2 self-center "
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 40 40"
-                  enableBackground="new 0 0 40 40"
-                  xml="preserve"
-                >
-                  <path
-                    opacity="0.2"
-                    d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946 s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634 c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"
-                  />
-                  <path d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0 C22.32,8.481,24.301,9.057,26.013,10.047z" />
-                </svg>
-              )}
-            </button>
-          </div>
+      <div className="border rounded-lg m-4 my-6 p-2">
+        <p className=" mt-1 text-xl font-semibold text-black  tracking-tighter">
+          Break the Ice with <span className="text-[#F6800A]">AI</span>
+        </p>
+        <p className="text-sm  text-gray-700">
+          Talk to {person.firstName} {person.lastName}&apos;s AI Assistant.
+        </p>
+        <div className="w-full flex flex-col items-center justify-center my-3 mt-3">
+          <button
+            type="submit"
+            onClick={() => magicSearch()}
+            form="price"
+            className=" w-full flex flex-row justify-center items-center gap-2 text-base bg-black hover:bg-white text-white  hover:text-black px-7 py-2 border border-black  hover:bg-softWhite rounded-lg "
+          >
+            <RocketLaunchIcon className="h-6 w-6" />
+            {/* Launch AI Assistant */} Coming Soon
+            {loading && (
+              <svg
+                className="animate-spin h-7 w-7  ml-2 self-center "
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 40 40"
+                enableBackground="new 0 0 40 40"
+                xml="preserve"
+              >
+                <path
+                  opacity="0.2"
+                  d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946 s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634 c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"
+                />
+                <path d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0 C22.32,8.481,24.301,9.057,26.013,10.047z" />
+              </svg>
+            )}
+          </button>
         </div>
-      ) : (
-        <Magic />
-      )}
+      </div>
       <div className="flex items-center justify-center">
         <p className="text-sm  text-gray-700">
           {person.firstName} {person.lastName}?
         </p>
-        <Link href={person.signedUp ? "/login" : "/register"}>
-          <p className="text-sm text-blue-700 ml-1">
+        <a
+          href={
+            person.signedUp
+              ? "https://sdr.jackrabbitops.com/login"
+              : "https://sdr.jackrabbitops.com/register"
+          }
+        >
+          <p className="text-sm text-blue-700 hover:text-blue-900 ml-1">
             {person.signedUp ? "Login" : "Register"} to edit
           </p>
-        </Link>
+        </a>
       </div>
     </main>
   );

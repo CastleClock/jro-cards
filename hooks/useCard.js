@@ -6,11 +6,10 @@ import { useRouter } from "next/router";
 import { USER_LOOKUP } from "../lib/requests";
 
 const UseCard = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [person, setPerson] = useState(null);
   const [cards, setCards] = useState([]);
-  const [facts, setFacts] = useState(null);
   const [error, setError] = useState(false);
 
   // REQUESTS
@@ -66,7 +65,6 @@ const UseCard = () => {
     loading,
     person,
     cards,
-    facts,
     loadPersono,
     magicSearch,
   };
