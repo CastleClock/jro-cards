@@ -16,10 +16,11 @@ export default function Input({
   disabled = false,
   global = null,
   setGlobal,
+  key = 0,
 }) {
   const [toggle, setToggle] = useState(null);
   return (
-    <div>
+    <div key={key}>
       <div
         className={`${
           errors ? "border-red-600 " : "border-gray-300 "

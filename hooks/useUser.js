@@ -28,7 +28,6 @@ export default function useUser({
   /************************************************************************* */
 
   async function updateUser(data) {
-    console.log(user);
     updateUserDetails({ variables: data });
   }
 
