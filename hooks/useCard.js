@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { USER_LOOKUP } from "../lib/requests";
 
 const UseCard = () => {
-  // const router = useRouter();
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [person, setPerson] = useState(null);
   const [cards, setCards] = useState([]);
@@ -19,6 +19,9 @@ const UseCard = () => {
     fetchPolicy: "network-only",
     onCompleted: (d) => {
       let person = d.userLookup;
+      if (!person) {
+        router.push("/edit");
+      }
       setPerson(person);
       setCards([
         {
