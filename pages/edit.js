@@ -2,7 +2,7 @@ import Link from "next/link";
 import { NextSeo } from "next-seo";
 import { createSEOPageConfig } from "../utils/seo";
 import { configSet } from "../lib/pageConfig";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import Input from "../components/inputs/text";
 

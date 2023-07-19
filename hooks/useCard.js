@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useLazyQuery, useMutation } from "@apollo/client";
+import { useState } from "react";
+import { useLazyQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
 //REQUESTS
