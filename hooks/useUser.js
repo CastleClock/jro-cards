@@ -40,6 +40,7 @@ export default function useUser() {
         console.log("new body", userBody);
         localStorage.removeItem("user");
         localStorage.setItem("user", JSON.stringify(userBody));
+        alert("Profile updated");
       },
       onError: (d) => console.log("error", d),
     }
