@@ -1,8 +1,7 @@
 import { NextSeo } from "next-seo";
 import { createSEOPageConfig } from "../utils/seo";
 import { configSet } from "../lib/pageConfig";
-import Link from "next/link";
-import { ChevronLeftIcon, RocketLaunchIcon } from "@heroicons/react/24/outline";
+import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 
 import { useEffect, useState } from "react";

@@ -3,6 +3,9 @@ import { NextSeo } from "next-seo";
 import { createSEOPageConfig } from "../utils/seo";
 import { configSet } from "../lib/pageConfig";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
+
+import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 
 import Input from "../components/inputs/text";
 
@@ -11,6 +14,7 @@ import { useForm } from "react-hook-form";
 import useUser from "../hooks/useUser";
 
 export default function EditPage() {
+  const router = useRouter();
   const { user, setUser, handleSign, updateUser } = useUser();
   useEffect(() => {
     if (user) return;
@@ -21,14 +25,15 @@ export default function EditPage() {
   return (
     <main className="max-w-md mx-auto ">
       <NextSeo {...createSEOPageConfig(configSet.landing)} />
-      <div className="flex flex-row  justify-between items-center px-4 mt-4">
+      <div className="sticky bg-white top-0 flex flex-row  justify-between items-center px-4 mt-4 border-b">
         <p className="font-bold">Scale YYJ</p>
-        <Link
-          href="https://scale.jackrabbitops.com/events"
-          className="border border-black text-black h-min px-6 py-2 rounded-lg text-sm hover:bg-black hover:text-gray-50"
+        <button
+          type="button"
+          onClick={() => router.back()}
+          className=" text-black h-min px-2 py-2 rounded-lg text-sm hover:bg-black hover:text-gray-50"
         >
-          <p className="text-sm">See Events</p>
-        </Link>
+          <ChevronLeftIcon className="h-5 w-5" />
+        </button>
       </div>
       <div>
         {user ? (
