@@ -144,13 +144,7 @@ export default function Home() {
         <p className="text-sm  text-gray-700">
           {person.firstName} {person.lastName}?
         </p>
-        <a
-          href={
-            person.signedUp
-              ? "https://sdr.jackrabbitops.com/login"
-              : "https://sdr.jackrabbitops.com/register"
-          }
-        >
+        <a href="https://scale.jackrabbitops.com/edit">
           <p className="text-sm text-blue-700 hover:text-blue-900 ml-1">
             {person.signedUp ? "Login" : "Register"} to edit
           </p>
