@@ -1,50 +1,70 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import Router from "next/router";
-import useSWR from "swr";
 import { useLazyQuery, useMutation } from "@apollo/client";
 
-import { UPDATE_USER } from "../lib/requests";
+import { LOGIN, UPDATE_USER } from "../lib/requests";
 
-export default function useUser({
-  redirectTo = "",
-  redirectIfFound = false,
-} = {}) {
-  const { data: user, mutate: mutateUser } = useSWR("../pages/api/user");
+export default function useUser() {
+  const [user, setUser] = useState(null);
 
   // REQUESTS
   /************************************************************************* */
-
-  const [updateUserDetails, userDetails] = useMutation(UPDATE_USER, {
+  const [login, loginResponse] = useMutation(LOGIN, {
     fetchPolicy: "network-only",
-    context: user,
     onCompleted: (d) => {
-      setOpenMember(false);
-      fetchMembers();
+      // expiries in an hour
+      let userBody = {
+        ...d.tokenAuth.user,
+        token: d.tokenAuth.token,
+        companyName: d.tokenAuth.user?.company?.name,
+      };
+      setUser(userBody);
+      localStorage.setItem("user", JSON.stringify(userBody));
     },
-    onError: (d) => console.log("error", d),
+    onError: (d) => console.log(d),
   });
+
+  const [updateMemberDetails, memberDetailsResponse] = useMutation(
+    UPDATE_USER,
+    {
+      fetchPolicy: "network-only",
+      onCompleted: (d) => {
+        let updatedUser = d.updateAccount.user;
+        let cloneUser = JSON.parse(JSON.stringify(user));
+        let userBody = {
+          ...cloneUser,
+          ...updatedUser,
+        };
+        setUser(userBody);
+        // expiries in an hour
+        console.log("new body", userBody);
+        localStorage.removeItem("user");
+        localStorage.setItem("user", JSON.stringify(userBody));
+      },
+      onError: (d) => console.log("error", d),
+    }
+  );
 
   // FUNCTIONS
   /************************************************************************* */
-
-  async function updateUser(data) {
-    updateUserDetails({ variables: data });
+  async function handleSign(data) {
+    data.email = data.email.trim().toLowerCase();
+    login({ variables: data });
   }
 
-  useEffect(() => {
-    // if no redirect needed, just return (example: already on /dashboard)
-    // if user data not yet there (fetch in progress, logged in or not) then don't do anything yet
-    if (!redirectTo || !user) return;
+  async function updateUser(data) {
+    console.log(user);
+    updateMemberDetails({
+      variables: data,
+      context: { token: user?.token || "bye" },
+    });
+  }
 
-    if (
-      // If redirectTo is set, redirect if the user was not found.
-      (redirectTo && !redirectIfFound && !user?.isLoggedIn) ||
-      // If redirectIfFound is also set, redirect if the user was found
-      (redirectIfFound && user?.isLoggedIn)
-    ) {
-      Router.push(redirectTo);
-    }
-  }, [user, redirectIfFound, redirectTo]);
-
-  return { user, mutateUser, updateUser };
+  return {
+    user,
+    setUser,
+    handleSign,
+    loading: loginResponse.loading || memberDetailsResponse.loading,
+    updateUser,
+  };
 }

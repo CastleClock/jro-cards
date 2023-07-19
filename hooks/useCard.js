@@ -20,14 +20,25 @@ const UseCard = () => {
     onCompleted: (d) => {
       let person = d.userLookup;
       if (!person) {
-        router.push("/edit");
+        setError(true);
+        return;
       }
       setPerson(person);
       setCards([
         {
           src: "/contacts.svg",
           name: "Contact",
-          link: `data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AN:${person.lastName};${person.firstName};;;%0ATEL;EMAIL:${person.email}%0AEND:VCARD`,
+          link: `data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0${
+            person.lastName && person.firstName
+              ? `%0AN:${person.lastName};${person.firstName}`
+              : ""
+          }${person.companyName ? `%0AORG:${person.companyName}` : ""}${
+            person.position ? `%0ATITLE:${person.position}` : ""
+          }${person.phoneNumber ? `%0ATEL:${person.phoneNumber}` : ""}${
+            person.email ? `%0AEMAIL:${person.email}` : ""
+          }${
+            person.linkedinUrl ? `%0AURL:${person.linkedinUrl}` : ""
+          }%0AEND:VCARD`,
         },
         {
           src: "/linkedin.svg",

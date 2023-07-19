@@ -2,19 +2,22 @@ import Link from "next/link";
 import { NextSeo } from "next-seo";
 import { createSEOPageConfig } from "../utils/seo";
 import { configSet } from "../lib/pageConfig";
-import { withIronSessionSsr } from "iron-session/next";
-import { sessionOptions } from "../lib/session";
-import { authHandler } from "../utils/userHandler";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import Input from "../components/inputs/text";
 
 //HOOKS
 import { useForm } from "react-hook-form";
-import useAuth from "../hooks/useAuth";
 import useUser from "../hooks/useUser";
 
-export default function EditPage({ user }) {
+export default function EditPage() {
+  const { user, setUser, handleSign, updateUser } = useUser();
+  useEffect(() => {
+    if (user) return;
+    const localUser = localStorage.getItem("user");
+    if (localUser) setUser(JSON.parse(localUser));
+  }, [user]);
+
   return (
     <main className="max-w-md mx-auto ">
       <NextSeo {...createSEOPageConfig(configSet.landing)} />
@@ -28,20 +31,22 @@ export default function EditPage({ user }) {
         </Link>
       </div>
       <div>
-        {user?.isLoggedIn ? <EditSection user={user} /> : <LoginSection />}
+        {user ? (
+          <EditSection user={user} updateUser={updateUser} />
+        ) : (
+          <LoginSection handleSign={handleSign} />
+        )}
       </div>
     </main>
   );
 }
 
-function LoginSection() {
+function LoginSection({ handleSign }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const { handleSign } = useAuth();
 
   return (
     <form onSubmit={handleSubmit(handleSign)} className="mt-2">
@@ -84,7 +89,7 @@ function LoginSection() {
   );
 }
 
-function EditSection({ user }) {
+function EditSection({ user, updateUser }) {
   const {
     register,
     handleSubmit,
@@ -140,8 +145,6 @@ function EditSection({ user }) {
     setValue("linkedinUrl", user?.linkedinUrl);
   }, [user]);
 
-  const { updateUser } = useUser({ user });
-
   return (
     <form onSubmit={handleSubmit(updateUser)} className="mt-2">
       <p className="text-sm text-gray-500">Edit Profile Below.</p>
@@ -171,8 +174,3 @@ function EditSection({ user }) {
     </form>
   );
 }
-
-export const getServerSideProps = withIronSessionSsr(
-  authHandler,
-  sessionOptions
-);
