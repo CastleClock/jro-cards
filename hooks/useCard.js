@@ -19,26 +19,21 @@ const UseCard = () => {
     fetchPolicy: "network-only",
     onCompleted: (d) => {
       let person = d.userLookup;
+      console.log(person);
       if (!person) {
         setError(true);
         return;
       }
       setPerson(person);
+      const vCardUrl = createVCard(
+        person,
+        `https://scale.jackrabbitops.com/u/${person.cardQrCode}`
+      );
       setCards([
         {
           src: "/contacts.svg",
           name: "Contact",
-          link: `data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0${
-            person.lastName && person.firstName
-              ? `%0AN:${person.lastName};${person.firstName}`
-              : ""
-          }${person.companyName ? `%0AORG:${person.companyName}` : ""}${
-            person.position ? `%0ATITLE:${person.position}` : ""
-          }${person.phoneNumber ? `%0ATEL:${person.phoneNumber}` : ""}${
-            person.email ? `%0AEMAIL:${person.email}` : ""
-          }${
-            person.linkedinUrl ? `%0AURL:${person.linkedinUrl}` : ""
-          }%0AEND:VCARD`,
+          link: vCardUrl,
         },
         {
           src: "/linkedin.svg",
@@ -66,14 +61,6 @@ const UseCard = () => {
     });
   }
 
-  // async function magicSearch(data) {
-  //   setLoading(true);
-
-  //   // router.push("/magic");
-  //   await new Promise((resolve) => setTimeout(resolve, 2000));
-  //   setLoading(false);
-  // }
-
   return {
     error,
     loading,
@@ -83,3 +70,19 @@ const UseCard = () => {
   };
 };
 export default UseCard;
+
+const createVCard = (person, jro_url) => {
+  const vCardData = `BEGIN:VCARD%0AVERSION:3.0${
+    person.lastName && person.firstName
+      ? `%0AN:${person.lastName};${person.firstName}`
+      : ""
+  }${person.companyName ? `%0AORG:${person.companyName}` : ""}${
+    person.position ? `%0ATITLE:${person.position}` : ""
+  }${person.phoneNumber ? `%0ATEL:${person.phoneNumber}` : ""}${
+    person.email ? `%0AEMAIL:${person.email}` : ""
+  }${person.linkedinUrl ? `%0AURL:${person.linkedinUrl}` : ""}${
+    jro_url ? `%0AURL:${jro_url}` : ""
+  }%0APHOTO:${person.linkedinProfilePicUrl || ""}%0AEND:VCARD`;
+
+  return `data:text/vcard;charset=utf-8,${vCardData}`;
+};
